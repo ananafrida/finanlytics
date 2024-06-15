@@ -4,31 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Financial Data Analysis</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
 </head>
 <body>
     <div class="container">
-        <h1>Financial Data Analysis</h1>
+        <h1 class="text-center">Financial Data Analysis</h1>
 
-        <h2>Transactions</h2>
-        <ul class="transaction-list">
+        <h2 class="text-center">Transactions</h2>
+        <ul class="list-group transaction-list">
             {% for transaction in transactions %}
-                <li>
-                    <strong>Date:</strong> {{ transaction[1] }}<br>   <!-- Ensure correct index for date -->
-                    <strong>Amount:</strong> ${{ transaction[2] }}<br> <!-- Ensure correct index for amount -->
-                    <strong>Category:</strong> {{ transaction[3] }}<br> <!-- Ensure correct index for category -->
-                    <strong>Description:</strong> {{ transaction[4] }} <!-- Ensure correct index for description -->
+                <li class="list-group-item">
+                    <strong>Date:</strong> {{ transaction[1] }}<br>
+                    <strong>Amount:</strong> ${{ transaction[2] }}<br>
+                    <strong>Category:</strong> {{ transaction[3] }}<br>
+                    <strong>Description:</strong> {{ transaction[4] }}
                 </li>
             {% endfor %}
         </ul>
 
-        <h2>Category Expenditure Plot</h2>
-        <div>{{ category_plot_div|safe }}</div>
+        <h2 class="text-center">Category Expenditure Plot</h2>
+        <img src="{{ url_for('static', filename='category_plot.png') }}" alt="Category Plot" class="category-plot">
 
-        <h2>Monthly Expenditure Trend</h2>
-        <div>{{ monthly_plot_div|safe }}</div>
+        <h2 class="text-center">Monthly Expenditure Trend</h2>
+        <img src="{{ url_for('static', filename='monthly_plot.png') }}" alt="Monthly Plot" class="category-plot">
     </div>
 
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
