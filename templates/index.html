@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Data Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Financial Data Analysis</h1>
+
+        <h2>Transactions</h2>
+        <ul class="transaction-list">
+            {% for transaction in transactions %}
+                <li>
+                    <strong>Date:</strong> {{ transaction[1] }}<br>   <!-- Ensure correct index for date -->
+                    <strong>Amount:</strong> ${{ transaction[2] }}<br> <!-- Ensure correct index for amount -->
+                    <strong>Category:</strong> {{ transaction[3] }}<br> <!-- Ensure correct index for category -->
+                    <strong>Description:</strong> {{ transaction[4] }} <!-- Ensure correct index for description -->
+                </li>
+            {% endfor %}
+        </ul>
+
+        <h2>Category Expenditure Plot</h2>
+        <div>{{ category_plot_div|safe }}</div>
+
+        <h2>Monthly Expenditure Trend</h2>
+        <div>{{ monthly_plot_div|safe }}</div>
+    </div>
+
+</body>
+</html>
